@@ -50,7 +50,7 @@
       <img src="https://www.gravatar.com/avatar/8461e0b8674185c1df153079e820504b?s=120" alt="Alejandro de la Fuente" class="author-avatar" />
       <div class="author-info">
         <p class="author-name">Alejandro de la Fuente</p>
-        <p class="author-role">Tech Lead · NTT Data · GDNE</p>
+        <p class="author-role">Expert Architect · NTT Data · Digital Architecture</p>
         <div class="author-links">
           <a href="https://tellmealex.dev" target="_blank" rel="noopener noreferrer" class="author-link">tellmealex.dev</a>
           <span class="author-sep">·</span>
