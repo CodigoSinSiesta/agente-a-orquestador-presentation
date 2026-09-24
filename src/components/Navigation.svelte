@@ -47,7 +47,7 @@
     'patron-creator-verifier': 'El agente no detecta sus errores',
     'patron-hitl-hotl': 'Supervisar sin microgestionar',
     'harness-ecuacion': 'Acto III · Harness > Modelo',
-    'harness-arnes-minimo': 'El arnés mínimo',
+    'harness-arnes-minimo': 'Reentrar al código',
     'sdd-bucle': 'SDD cierra el loop hoy',
     'horizonte-oneshot': 'Acto IV · El horizonte one-shot',
     'horizonte-oracle': 'El oracle de mantenibilidad',
