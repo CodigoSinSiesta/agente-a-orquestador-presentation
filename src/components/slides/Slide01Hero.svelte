@@ -12,7 +12,7 @@
   <div class="slide-content">
     <div class="eyebrow">
       <span class="eyebrow-dot"></span>
-      <span>Codigo Sin Siesta · Parque Temático · 2026</span>
+      <span>PARALELO 37 · SOFTWARE ENGINEERING &amp; DEV CULTURE · JAÉN</span>
     </div>
 
     <h1 class="title">
