@@ -1,3 +1,7 @@
+<script lang="ts">
+  const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
+</script>
+
 <div class="swiper-slide">
   <div class="slide-content">
     <div class="act-tag"><span class="tag-dot"></span><span>Acto II · La capa de decisión</span></div>
@@ -5,44 +9,34 @@
     <p class="lead">Jev propone una capa para las bifurcaciones pequeñas: devuelve una elección, un score o una probabilidad calibrada. El orquestador conserva el trabajo complejo.</p>
 
     <div class="comparison">
-      <section class="patterns" aria-label="Patrones que Jev puede aligerar">
-        <p class="section-label">Donde puede sustituir una llamada al LLM</p>
+      <section class="patterns" aria-label="Ejemplo oficial de workflow">
+        <p class="section-label">Ejemplo oficial · Expense claims</p>
 
-        <div class="pattern-row">
-          <span class="pattern-name">Routing</span>
-          <p>Elegir el worker o el modelo para una petición.</p>
-          <code>choice</code>
+        <div class="policy-box">
+          <span class="box-label">Política escrita</span>
+          <p>Si el recibo no se lee, pide otro. Clasifica el gasto. Una comida de más de 75 $ con una descripción que no coincide requiere aprobación.</p>
         </div>
 
-        <div class="pattern-row">
-          <span class="pattern-name">HITL / HOTL</span>
-          <p>Decidir si una acción pasa, se bloquea o requiere revisión.</p>
-          <code>noul</code>
-        </div>
-
-        <div class="pattern-row">
-          <span class="pattern-name">Contexto</span>
-          <p>Valorar qué resultado conservar antes de que sature la sesión.</p>
-          <code>score</code>
+        <div class="workflow-box">
+          <span class="box-label">Preguntas estrechas</span>
+          <div class="type-row"><code>noul</code><span>¿Se puede leer el recibo?</span></div>
+          <div class="type-row"><code>choice</code><span>meal · travel · equipment</span></div>
+          <div class="type-row"><code>score</code><span>¿Cuánto coincide la descripción?</span></div>
+          <p class="rule-line"><strong>Regla en código:</strong> meal &gt; 75 $ + mismatch → manager</p>
         </div>
       </section>
 
-      <section class="jev-core" aria-label="Jev como capa de decisiones">
-        <p class="core-kicker">Jev · System One</p>
-        <div class="core-ring">
-          <span class="ring-top">estado + pregunta</span>
-          <strong>Decisión<br />tipada</strong>
-          <span class="ring-bottom">confianza calibrada</span>
-        </div>
-        <p class="core-caption">Valores sobre los que el código ramifica directamente, sin interpretar una respuesta en prosa.</p>
-      </section>
+      <figure class="jev-visual">
+        <img src={base + 'jev-decision-layer.png'} alt="Un núcleo de decisión recibe señales de contexto y las distribuye en tres rutas técnicas" loading="lazy" />
+        <figcaption>Estado y pregunta dentro. Decisión tipada fuera.</figcaption>
+      </figure>
     </div>
 
     <div class="boundary">
       <strong>El límite importa:</strong> Jev puede decidir el siguiente paso, pero no sustituye a Creator-Verifier ni a Orchestrator-Workers cuando hay que crear, coordinar y comprobar un artefacto.
     </div>
 
-    <a class="source" href="https://jevtypesafeai.com/es/what-is-jev" target="_blank" rel="noopener noreferrer">Fuente: documentación de Jev · decisiones tipadas, choice, score y noul</a>
+    <a class="source" href="https://evals.typesafe.ai/" target="_blank" rel="noopener noreferrer">Fuente oficial: TypeSafe · Workflow evals</a>
   </div>
 </div>
 
@@ -59,19 +53,19 @@
   .comparison { display: grid; grid-template-columns: 1.3fr 0.9fr; gap: var(--spacing-2xl); align-items: stretch; }
   .patterns { display: flex; flex-direction: column; border-top: 1px solid rgba(96, 165, 250, 0.32); }
   .section-label { margin: var(--spacing-md) 0 var(--spacing-sm); font-family: var(--font-mono); color: #93c5fd; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
-  .pattern-row { display: grid; grid-template-columns: 126px 1fr auto; align-items: center; gap: var(--spacing-md); padding: var(--spacing-md) 0; border-top: 1px solid rgba(96, 165, 250, 0.16); }
-  .pattern-name { color: var(--color-neutral-light); font-family: var(--font-mono); font-size: 0.9rem; font-weight: 800; }
-  .pattern-row p { margin: 0; color: var(--color-neutral-light); font-size: 0.88rem; line-height: 1.45; opacity: 0.68; }
+  .policy-box, .workflow-box { display: flex; flex-direction: column; gap: var(--spacing-sm); padding: var(--spacing-md); border: 1px solid rgba(96, 165, 250, 0.17); background: rgba(30, 58, 138, 0.1); }
+  .policy-box { border-radius: var(--radius-sm) var(--radius-sm) 0 0; }
+  .workflow-box { border-top: 0; border-radius: 0 0 var(--radius-sm) var(--radius-sm); }
+  .box-label { color: #93c5fd; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+  .policy-box p { margin: 0; color: var(--color-neutral-light); font-size: 0.82rem; line-height: 1.48; opacity: 0.72; }
+  .type-row { display: grid; grid-template-columns: 58px 1fr; align-items: center; gap: var(--spacing-sm); color: var(--color-neutral-light); font-size: 0.8rem; line-height: 1.35; }
+  .rule-line { margin: var(--spacing-xs) 0 0; color: #fcd34d; font-family: var(--font-mono); font-size: 0.7rem; line-height: 1.4; }
+  .rule-line strong { color: #f59e0b; }
   code { padding: 4px 8px; border: 1px solid rgba(134, 239, 172, 0.35); border-radius: 4px; color: #86efac; background: rgba(34, 197, 94, 0.08); font-family: var(--font-mono); font-size: 0.72rem; font-weight: 800; }
 
-  .jev-core { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--spacing-sm); min-height: 220px; overflow: hidden; border: 1px solid rgba(59, 130, 246, 0.35); border-radius: var(--radius-lg); background: radial-gradient(circle at 50% 44%, rgba(59, 130, 246, 0.22), rgba(7, 28, 53, 0.16) 62%); text-align: center; }
-  .core-kicker { margin: 0; color: #93c5fd; font-family: var(--font-mono); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.13em; }
-  .core-ring { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 142px; height: 142px; border: 1px solid rgba(147, 197, 253, 0.6); border-radius: 50%; box-shadow: 0 0 0 12px rgba(59, 130, 246, 0.06), 0 0 32px rgba(59, 130, 246, 0.18); }
-  .core-ring strong { color: var(--color-neutral-light); font-size: 1.3rem; line-height: 1.04; }
-  .ring-top, .ring-bottom { color: #bfdbfe; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.04em; opacity: 0.72; }
-  .ring-top { margin-bottom: var(--spacing-sm); }
-  .ring-bottom { margin-top: var(--spacing-sm); }
-  .core-caption { max-width: 310px; margin: 0; color: var(--color-neutral-light); font-size: 0.78rem; line-height: 1.45; opacity: 0.62; }
+  .jev-visual { position: relative; display: flex; flex-direction: column; align-items: stretch; justify-content: center; gap: var(--spacing-sm); min-height: 220px; margin: 0; overflow: hidden; border: 1px solid rgba(59, 130, 246, 0.35); border-radius: var(--radius-lg); background: rgba(7, 28, 53, 0.24); text-align: center; }
+  .jev-visual img { width: 100%; height: 220px; display: block; object-fit: cover; }
+  .jev-visual figcaption { padding: 0 var(--spacing-md) var(--spacing-md); color: #bfdbfe; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.04em; opacity: 0.78; }
 
   .boundary { padding: var(--spacing-sm) var(--spacing-md); border-left: 3px solid #f59e0b; background: rgba(245, 158, 11, 0.06); color: var(--color-neutral-light); font-size: 0.82rem; line-height: 1.45; opacity: 0.82; }
   .boundary strong { color: #fcd34d; }
@@ -80,12 +74,10 @@
 
   @media (max-width: 800px) {
     .comparison { grid-template-columns: 1fr; }
-    .jev-core { min-height: 240px; }
+    .jev-visual, .jev-visual img { min-height: 240px; height: 240px; }
   }
 
   @media (max-width: 560px) {
-    .pattern-row { grid-template-columns: 1fr auto; }
-    .pattern-row p { grid-column: 1 / -1; }
     .source { align-self: flex-start; }
   }
 </style>
